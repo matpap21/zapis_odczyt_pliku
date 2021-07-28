@@ -24,7 +24,7 @@ public class Main2 {
             //usuwanie jakichkolwiek innych linii tekstu w pliku przed nadpisem
             for (String line;
                  (line = reader.readLine()) != null;) {
-                line = line.replace(new_line, " ");
+                String line2 = line.replace (new_line, " ");
             }
 
             // wyczyść bufor, wymuś zapis do pliku
