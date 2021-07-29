@@ -52,7 +52,6 @@ public class Main {
 
                 skonwertowana_data_urodzenia_uzytkownika = data.format (formatczasu);
                 System.out.println ("Data urodzenia użytkownika to " + skonwertowana_data_urodzenia_uzytkownika);
-                writer.println(skonwertowana_data_urodzenia_uzytkownika);
 
 
             } catch (DateTimeParseException | FileNotFoundException error4) {
@@ -73,8 +72,6 @@ public class Main {
                 }
                 String wpisanawartosc = scanner.next ( );
                 wybranyEnum_gender = Gender.valueOf (wpisanawartosc.toUpperCase ( ));
-                writer.println(wybranyEnum_gender);
-
 
             } catch (IllegalArgumentException | FileNotFoundException error) {
                 System.out.println ("Niepoprawna wartość, spróbuj ponownie ");
@@ -98,7 +95,6 @@ public class Main {
                 if (wybranyEnum_smoker == Smoker.SMOKER) {
                     System.out.println ("palący żyją średnio 9 lat i 3 miesiące krócej");
                 }
-                writer.println(wybranyEnum_smoker);
 
 
             } catch (IllegalArgumentException | FileNotFoundException error2) {
