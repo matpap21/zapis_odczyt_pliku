@@ -53,9 +53,10 @@ public class Main2 {
 
                 if (sciezka.isFile ( )) {
                     System.out.println ("to jest plik");
-                } else {
+                } else if (sciezka.isDirectory ()) {
                     System.out.println ("to jest katalog");
                 }
+
 
                 System.out.println ("Czas ostatniej modyfikacji: ");
                 java.util.Date data_modyfikacji_pliku = new java.util.Date(sciezka.lastModified());

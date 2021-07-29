@@ -37,6 +37,8 @@ public class Main {
         LocalDate data;
 
 
+
+        // SKONWERTOWANA DATA URORZENIA UZYTKOWNIKA
         do {
             skonwertowana_data_urodzenia_uzytkownika = null;
             try  (PrintWriter writer = new PrintWriter(new FileOutputStream (sciezka))) {
@@ -44,9 +46,6 @@ public class Main {
                 System.out.println ("Podaj datę urodzenia w formacie:yyyy-MM-dd lub quit by zakonczyc:");
                 String data_uzytkownika = scanner.next ( );
 
-                if ((data_uzytkownika.equalsIgnoreCase ("quit"))) {
-                    break;
-                }
 
                 DateTimeFormatter formatczasu = DateTimeFormatter.ofPattern ("yyyy.MM.dd");
                 data = LocalDate.parse (data_uzytkownika);
@@ -126,7 +125,11 @@ public class Main {
                     System.out.println ("istnieje 10% prawdopodobieństwo, żeumrzesz na zawał serca w wieku 60 lat");
                 }
 
+                writer.println ( skonwertowana_data_urodzenia_uzytkownika );
+                writer.println ( wybranyEnum_gender );
+                writer.println ( wybranyEnum_smoker );
                 writer.println(wybranyEnum_stres);
+                writer.flush ();
 
 
             } catch (IllegalArgumentException | FileNotFoundException error3) {
