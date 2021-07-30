@@ -9,6 +9,7 @@ package com.sda.zapis_plikow.Zadanie5;
 // i.jeśli tak, istnieje 10% prawdopodobieństwo, żeumrzesz na zawał serca w wieku 60 lat
 
 // Zbierz wyniki odpowiedzi użytkownika do pliku
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,12 +37,11 @@ public class Main {
         String skonwertowana_data_urodzenia_uzytkownika;
         LocalDate data;
 
-
-
+        // ################################
         // SKONWERTOWANA DATA URORZENIA UZYTKOWNIKA
         do {
             skonwertowana_data_urodzenia_uzytkownika = null;
-            try  (PrintWriter writer = new PrintWriter(new FileOutputStream (sciezka))) {
+            try {
 
                 System.out.println ("Podaj datę urodzenia w formacie:yyyy-MM-dd lub quit by zakonczyc:");
                 String data_uzytkownika = scanner.next ( );
@@ -54,17 +54,16 @@ public class Main {
                 System.out.println ("Data urodzenia użytkownika to " + skonwertowana_data_urodzenia_uzytkownika);
 
 
-            } catch (DateTimeParseException | FileNotFoundException error4) {
+            } catch (DateTimeParseException iae) {
                 System.out.println ("Niepoprawna wartość, spróbuj ponownie ");
             }
         } while (skonwertowana_data_urodzenia_uzytkownika == null);
         System.out.println ("Data urodzenia " + skonwertowana_data_urodzenia_uzytkownika);
 
-
+        // ################################
         //KOBIETA czy MEZCZYZNA
         do {
-            try (PrintWriter writer = new PrintWriter(new FileOutputStream(sciezka)))
-            {
+            try {
 
                 System.out.println ("Kobieta, czy mężczyzna (k/m)?: ");
                 for (Gender plec : Gender.values ( )) {
@@ -73,16 +72,16 @@ public class Main {
                 String wpisanawartosc = scanner.next ( );
                 wybranyEnum_gender = Gender.valueOf (wpisanawartosc.toUpperCase ( ));
 
-            } catch (IllegalArgumentException | FileNotFoundException error) {
+            } catch (IllegalArgumentException iae) {
                 System.out.println ("Niepoprawna wartość, spróbuj ponownie ");
             }
         } while (wybranyEnum_gender == null);
         System.out.println ("Wybrano " + wybranyEnum_gender);
 
-
+        // ################################
         //ENUM PALACY/NIEPALACY
         do {
-            try (PrintWriter writer = new PrintWriter(new FileOutputStream(sciezka))) {
+            try {
 
                 System.out.println ("Palisz papierosy ?: ");
                 for (Smoker smoking : Smoker.values ( )) {
@@ -96,8 +95,7 @@ public class Main {
                     System.out.println ("palący żyją średnio 9 lat i 3 miesiące krócej");
                 }
 
-
-            } catch (IllegalArgumentException | FileNotFoundException error2) {
+            } catch (IllegalArgumentException error1) {
                 System.out.println ("Niepoprawna wartość, spróbuj ponownie ");
             }
         } while (wybranyEnum_smoker == null);
@@ -105,10 +103,9 @@ public class Main {
 
 
         // STRES / NOSTRES
-
+        // ################################
         do {
-            try (PrintWriter writer = new PrintWriter(new FileOutputStream(sciezka))) {
-
+            try {
                 System.out.println ("Czy żyjesz w stresie?: ");
                 for (Stres stres : Stres.values ( )) {
                     System.out.println (" - " + stres);
@@ -118,20 +115,23 @@ public class Main {
                 wybranyEnum_stres = Stres.valueOf (wpisanawartosc3.toUpperCase ( ));
 
                 if (wybranyEnum_stres == Stres.STRES) {
-                    System.out.println ("istnieje 10% prawdopodobieństwo, żeumrzesz na zawał serca w wieku 60 lat");
+                    System.out.println ("istnieje 10% prawdopodobieństwo, że umrzesz na zawał serca w wieku 60 lat");
                 }
-
-                writer.println ( skonwertowana_data_urodzenia_uzytkownika );
-                writer.println ( wybranyEnum_gender );
-                writer.println ( wybranyEnum_smoker );
-                writer.println(wybranyEnum_stres);
-                writer.flush ();
-
-
-            } catch (IllegalArgumentException | FileNotFoundException error3) {
+            } catch (IllegalArgumentException error3) {
                 System.out.println ("Niepoprawna wartość, spróbuj ponownie ");
             }
         } while (wybranyEnum_stres == null);
         System.out.println ("Wybrano " + wybranyEnum_stres);
+
+        // ################################
+        try (PrintWriter writer = new PrintWriter (new FileOutputStream (sciezka))) {
+            writer.println (skonwertowana_data_urodzenia_uzytkownika);
+            writer.println (wybranyEnum_gender);
+            writer.println (wybranyEnum_smoker);
+            writer.println (wybranyEnum_stres);
+            writer.flush ( );
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace ( );
+        }
     }
 }
